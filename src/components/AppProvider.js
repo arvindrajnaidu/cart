@@ -63,13 +63,13 @@ export const AppProvider = ({
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
-    const settingsStr = window.localStorage.getItem("seller_settings");
-    // setDidLoadFromStorage(true);
-    if (!settingsStr) return;
-    dispatch({
-      type: "load-settings",
-      settings: JSON.parse(settingsStr),
-    });
+    window.CasualSeller.db.getItem("seller_settings").then((settings) => {
+      if (!settings) return;
+      dispatch({
+        type: "load-settings",
+        settings,
+      });
+    })
   }, []);
 
   return (

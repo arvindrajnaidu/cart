@@ -182,7 +182,6 @@ export default function ItemDetails({
   const handleAddToOrder = () => {
     const { qty, name: itemName } = lineItem;
     const { id, name, price } = lineItem.variation;
-    debugger;
     dispatch({
       type: "update-lineitem",
       id,
